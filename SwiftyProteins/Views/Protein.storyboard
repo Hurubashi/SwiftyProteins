@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--ProteinView-->
+        <scene sceneID="qxQ-5S-yFJ">
+            <objects>
+                <viewController storyboardIdentifier="ProteinVC" id="vgZ-86-bfc" userLabel="ProteinView" customClass="ProteinVC" customModule="SwiftyProteins" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="PfG-GM-Wko">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <sceneKitView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9rP-Ig-UcY">
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            </sceneKitView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nwH-oN-l0a">
+                                <rect key="frame" x="16" y="626" width="150" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="150" id="vPg-xu-mJu"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <color key="textColor" red="0.50496774911880493" green="0.076817162334918976" blue="0.76178693771362305" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.43410679699999999" green="0.72549402709999999" blue="0.65881627799999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="9rP-Ig-UcY" firstAttribute="top" secondItem="7XM-ow-CDH" secondAttribute="top" id="5gk-1A-2Jt"/>
+                            <constraint firstItem="7XM-ow-CDH" firstAttribute="trailing" secondItem="9rP-Ig-UcY" secondAttribute="trailing" id="AKI-L0-k35"/>
+                            <constraint firstItem="9rP-Ig-UcY" firstAttribute="leading" secondItem="7XM-ow-CDH" secondAttribute="leading" id="Jli-Lt-zge"/>
+                            <constraint firstItem="7XM-ow-CDH" firstAttribute="bottom" secondItem="9rP-Ig-UcY" secondAttribute="bottom" id="K6q-OX-r9x"/>
+                            <constraint firstItem="7XM-ow-CDH" firstAttribute="leading" secondItem="nwH-oN-l0a" secondAttribute="trailing" constant="-166" id="PXl-el-jv5"/>
+                            <constraint firstItem="nwH-oN-l0a" firstAttribute="top" secondItem="7XM-ow-CDH" secondAttribute="bottom" constant="-41" id="r66-eE-iCR"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="7XM-ow-CDH"/>
+                    </view>
+                    <connections>
+                        <outlet property="atomName" destination="nwH-oN-l0a" id="ZLI-KR-O6I"/>
+                        <outlet property="proteinScene" destination="9rP-Ig-UcY" id="BSW-zk-YWi"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xlQ-Sy-wTI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1380" y="55.322338830584712"/>
+        </scene>
+    </scenes>
+</document>

@@ -1,9 +1,9 @@
 //
 //  AppDelegate.swift
-//  ProteinDisplayScene
+//  SwiftyProteins
 //
-//  Created by Maxym RYBAK on 02.09.2018.
-//  Copyright © 2018 Maxym RYBAK. All rights reserved.
+//  Created by Ivan OSYPENKO on 9/3/18.
+//  Copyright © 2018 iosypenk's team. All rights reserved.
 //
 
 import UIKit
