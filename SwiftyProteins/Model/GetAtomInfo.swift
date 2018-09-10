@@ -25,6 +25,7 @@ struct AtomInfo: Decodable {
     let phase: String?
     let summary: String?
     let symbol: String?
+    let molar_heat: Double?
 }
 
 class GetAtomInfo {
@@ -34,11 +35,6 @@ class GetAtomInfo {
         if let path = Bundle.main.path(forResource: "PeriodicTableJSON", ofType: "json") {
             do {
                 let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .mappedIfSafe)
-//                let jsonResult = try JSONSerialization.jsonObject(with: data, options: .mutableLeaves)
-//                if let jsonResult = jsonResult as? Dictionary<String, AnyObject>, let elements = jsonResult["elements"] as? [Any] {
-//                    return elements
-//                }
-                
                 jsonResult = try JSONDecoder().decode(Elements.self, from: data) as Elements?
                 return jsonResult
             } catch {

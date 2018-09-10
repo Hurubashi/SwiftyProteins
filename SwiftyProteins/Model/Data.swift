@@ -52,8 +52,22 @@ class MyData {
         }
         
         for key in self.proteinsArr {
-            if key.contains(text) {
-               filteredArr.append(key)
+            if key.hasPrefix(text) {
+                filteredArr.append(key)
+            }
+        }
+        
+        for key in self.proteinsArr {
+            var alreadyexists = false
+            if key.hasSuffix(text) {
+                for str in filteredArr {
+                    if str == key {
+                        alreadyexists = true
+                    }
+                }
+                if !alreadyexists {
+                    filteredArr.append(key)
+                }
             }
         }
     }
