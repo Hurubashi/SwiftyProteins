@@ -17,6 +17,7 @@ class ProteinListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     @IBOutlet weak var searchBar: UISearchBar!
     
     @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var segmentedControll: UISegmentedControl!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,13 +25,20 @@ class ProteinListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         proteinsList.delegate = self
         proteinsList.dataSource = self
         searchBar.delegate = self
-        data.getProteinsArr()
+        if data.proteinsArr.isEmpty {
+            data.getProteinsArr()
+        }
         loadingIndicator.isHidden = true
     }
     
     override func viewWillAppear(_ animated: Bool) {
         hideIndicator()
         proteinsList.reloadData()
+        
+        
+        let titleTextAttributes = [NSAttributedStringKey.foregroundColor: UIColor.white]
+        segmentedControll.setTitleTextAttributes(titleTextAttributes, for: .normal)
+        segmentedControll.setTitleTextAttributes(titleTextAttributes, for: .selected)
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -59,14 +67,6 @@ class ProteinListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-//
-//        if !data.filteredArr.isEmpty {
-//            cell.textLabel?.text = data.filteredArr[indexPath.row]
-//            return cell
-//        }
-//        cell.textLabel?.text = data.proteinsArr[indexPath.row]
-//        return cell
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? ProteinListCell {
             if !data.filteredArr.isEmpty {
                 cell.set(name: data.filteredArr[indexPath.row])
@@ -79,8 +79,8 @@ class ProteinListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
     }
     
     // MARK: -Segue for selected row
-
-    func tableView(_ tableView: UITableView, didHighlightRowAt indexPath: IndexPath) {
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
        
         tableView.cellForRow(at: indexPath)?.setHighlighted(false, animated: true)
         
@@ -94,9 +94,9 @@ class ProteinListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         data.downloadProtein(name: name, completionHandler: { (response) in
             DispatchQueue.main.async {
                 if let data = response {
-                        self.data.pdbFile = data
-                        self.performSegue(withIdentifier: "show", sender: self)
-                        return
+                    self.data.pdbFile = data
+                    self.performSegue(withIdentifier: "show", sender: self)
+                    return
                 }
                 self.showAlert(error: "Error", message: "Connection failed")
             }
@@ -115,9 +115,10 @@ class ProteinListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         searchBar.resignFirstResponder()
         
         guard let name = searchBar.text else { return }
-        if data.proteinsArr.contains(name) {
+        let upperName = name.uppercased()
+        if data.proteinsArr.contains(upperName) {
             showIndicator()
-            callSegue(name)
+            callSegue(upperName)
         } else {
             self.showAlert(error: "Error", message: "No such name")
         }
@@ -139,4 +140,16 @@ class ProteinListVC: UIViewController, UITableViewDelegate, UITableViewDataSourc
         self.present(alertController, animated: true, completion: nil)
     }
     
+    @IBAction func changeSort(_ sender: UISegmentedControl) {
+        
+        switch sender.selectedSegmentIndex {
+        case 0:
+            data.proteinsArr.sort()
+        case 1:
+            data.proteinsArr.reverse()
+        default:
+            break
+        }
+        proteinsList.reloadData()
+    }
 }

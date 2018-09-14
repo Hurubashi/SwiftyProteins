@@ -13,6 +13,7 @@ import GoogleSignIn
 class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     var window: UIWindow?
+    var name: String?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
       
@@ -49,15 +50,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
             // [END_EXCLUDE]
         } else {
             // Perform any operations on signed in user here.
-            let fullName = user.profile.name
+            //            let fullName = user.profile.name
+            self.name = user.profile.givenName
             
             // [START_EXCLUDE]
             NotificationCenter.default.post(
                 name: Notification.Name(rawValue: "ToggleAuthUINotification"),
                 object: nil,
-                userInfo: ["statusText": "Signed in user:\n\(fullName ?? "fullname")"])
+                userInfo: ["statusText": "Signed in user:\n\(name ?? "name")"])
             // [END_EXCLUDE]
-            print(fullName ?? "fullName")
         }
     }
     // [END signin_handler]
@@ -78,7 +79,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, GIDSignInDelegate {
     
     func applicationDidEnterBackground(_ application: UIApplication) {
 
-        print("DidEnterBackground")
         GIDSignIn.sharedInstance().signOut()
         GIDSignIn.sharedInstance().disconnect()
         

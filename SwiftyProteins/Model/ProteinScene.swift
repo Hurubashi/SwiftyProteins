@@ -11,7 +11,7 @@ import SceneKit
 
 class ProteinScene: SCNScene, SCNNodeRendererDelegate {
     
-    var atoms : [SCNNode] = []
+    var atoms : [SCNNode?] = []
     var cameraNode: SCNNode!
     
     init(pdbFile: String) {
@@ -33,11 +33,16 @@ class ProteinScene: SCNScene, SCNNodeRendererDelegate {
             }
             else if splitedLine[0] == "CONECT" {
                 var i: Int = 0
+                let atomsRange = atoms.count
+                let parentAtom: Int = Int(splitedLine[1])! - 1
                 for elem in splitedLine {
+                    let dauterAtom = (Int(elem) ?? 0) - 1
                     if i > 1 {
-                        let newConnection = AtomConnections(v1: atoms[Int(splitedLine[1])! - 1].position, v2: atoms[Int(elem)! - 1].position)
-                        newConnection.name = "CONECT"
-                        self.rootNode.addChildNode(newConnection)
+                        if (parentAtom < atomsRange && dauterAtom < atomsRange) {
+                            let newConnection = AtomConnections(v1: (atoms[parentAtom]?.position)!, v2: (atoms[Int(elem)! - 1]?.position)!)
+                            newConnection.name = "CONECT"
+                            self.rootNode.addChildNode(newConnection)
+                        }
                     }
                     i += 1
                 }

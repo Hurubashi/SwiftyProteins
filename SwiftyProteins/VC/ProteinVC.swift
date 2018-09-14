@@ -26,8 +26,6 @@ class ProteinVC: UIViewController {
     
     var oldNode: SCNNode?
     var oldColor: UIColor?
-    
-    
     var pdbfile : String?
     var name : String?
     var atoms: Elements?
@@ -52,6 +50,10 @@ class ProteinVC: UIViewController {
         
         let doneButton = UIBarButtonItem(title: "Share", style: .plain, target: self, action: #selector(shareAction))
         navigationItem.rightBarButtonItem = doneButton
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        self.oldNode?.removeAllActions()
     }
     
     @objc func shareAction() {

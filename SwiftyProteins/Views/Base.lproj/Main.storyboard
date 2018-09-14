@@ -12,6 +12,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Futura.ttc">
+            <string>Futura-Medium</string>
+        </array>
         <array key="Helvetica.ttc">
             <string>Helvetica</string>
         </array>
@@ -73,13 +76,21 @@
                                     <constraint firstAttribute="height" constant="1" id="1Es-m5-3HP"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gof-uO-Nbz">
+                                <rect key="frame" x="16" y="168.5" width="343" height="29"/>
+                                <fontDescription key="fontDescription" name="Futura-Medium" family="Futura" pointSize="22"/>
+                                <color key="textColor" red="0.46202266219999999" green="0.83828371759999998" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.23204028609999999" green="0.28613638879999997" blue="0.35687360169999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="Gof-uO-Nbz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="1AX-Rn-uEk"/>
                             <constraint firstItem="V5I-bU-WL8" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="4:5" id="3fe-c8-rdk"/>
                             <constraint firstItem="Wfv-xl-hku" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="3jE-kV-xB2"/>
                             <constraint firstAttribute="trailingMargin" secondItem="Wfv-xl-hku" secondAttribute="trailing" constant="59" id="CNY-7W-C7U"/>
                             <constraint firstItem="V5I-bU-WL8" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="F26-sf-d2v"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Gof-uO-Nbz" secondAttribute="trailing" constant="16" id="Hk7-Q0-RY0"/>
                             <constraint firstItem="Wfv-xl-hku" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="59" id="MbX-B7-H8k"/>
                             <constraint firstAttribute="trailing" secondItem="eIp-dZ-uUV" secondAttribute="trailing" id="Pkm-ud-5Od"/>
                             <constraint firstItem="eIp-dZ-uUV" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="UW0-BZ-d9O"/>
@@ -87,6 +98,7 @@
                             <constraint firstItem="dOf-Tc-VUs" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="mN1-Db-AYj"/>
                             <constraint firstItem="dOf-Tc-VUs" firstAttribute="bottom" secondItem="V5I-bU-WL8" secondAttribute="bottom" constant="70" id="nir-WM-MjI"/>
                             <constraint firstItem="Wfv-xl-hku" firstAttribute="bottom" secondItem="V5I-bU-WL8" secondAttribute="bottom" constant="10" id="sMp-oz-iUI"/>
+                            <constraint firstItem="Gof-uO-Nbz" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" multiplier="3:6" id="sdZ-5z-eFc"/>
                             <constraint firstAttribute="bottom" secondItem="eIp-dZ-uUV" secondAttribute="bottom" id="vd6-do-rPy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
@@ -95,12 +107,13 @@
                     <connections>
                         <outlet property="signInButton" destination="dOf-Tc-VUs" id="LCh-gJ-FWh"/>
                         <outlet property="touchID" destination="V5I-bU-WL8" id="0kQ-BK-u0L"/>
+                        <outlet property="welcomeMessage" destination="Gof-uO-Nbz" id="QxR-VY-Ykm"/>
                         <segue destination="jrN-iV-1dz" kind="show" identifier="showList" id="Wz5-vV-jqH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-362.39999999999998" y="55.322338830584712"/>
+            <point key="canvasLocation" x="-362.5" y="54.5"/>
         </scene>
         <!--Protein ListVC-->
         <scene sceneID="b7t-9C-6lf">
@@ -167,11 +180,26 @@
                                 <rect key="frame" x="169" y="347" width="37" height="37"/>
                                 <color key="color" red="0.33236312099999998" green="0.46830508069999999" blue="0.96851998569999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </activityIndicatorView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="2xM-j5-fV3">
+                                <rect key="frame" x="0.0" y="639" width="375" height="29"/>
+                                <color key="backgroundColor" red="0.22009328007698059" green="0.2547684907913208" blue="0.32550054788589478" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <segments>
+                                    <segment title="a-z"/>
+                                    <segment title="z-a"/>
+                                </segments>
+                                <color key="tintColor" red="0.15528091788291931" green="0.28592023253440857" blue="0.44708257913589478" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <connections>
+                                    <action selector="changeSort:" destination="jrN-iV-1dz" eventType="valueChanged" id="hJt-Fe-h9g"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.23204028606414795" green="0.28613638877868652" blue="0.35687360167503357" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gSs-PM-QOg" secondAttribute="trailing" id="0Gc-GA-vYc"/>
+                            <constraint firstItem="2xM-j5-fV3" firstAttribute="leading" secondItem="meu-5V-eYS" secondAttribute="leading" id="8OC-U5-HEb"/>
                             <constraint firstItem="5Da-Qh-IK0" firstAttribute="centerY" secondItem="meu-5V-eYS" secondAttribute="centerY" id="8az-LZ-eCX"/>
+                            <constraint firstItem="meu-5V-eYS" firstAttribute="bottom" secondItem="2xM-j5-fV3" secondAttribute="bottom" id="D4S-MI-xCw"/>
+                            <constraint firstItem="meu-5V-eYS" firstAttribute="trailing" secondItem="2xM-j5-fV3" secondAttribute="trailing" id="Fby-On-1Th"/>
                             <constraint firstItem="QJz-hx-Xne" firstAttribute="top" secondItem="meu-5V-eYS" secondAttribute="top" id="PGs-HJ-Kz9"/>
                             <constraint firstItem="5Xh-1I-GSB" firstAttribute="trailing" secondItem="meu-5V-eYS" secondAttribute="trailing" id="Re2-39-Hym"/>
                             <constraint firstItem="QJz-hx-Xne" firstAttribute="trailing" secondItem="meu-5V-eYS" secondAttribute="trailing" id="eP4-f2-0cX"/>
@@ -192,6 +220,7 @@
                         <outlet property="loadingIndicator" destination="5Da-Qh-IK0" id="Aku-o6-yIB"/>
                         <outlet property="proteinsList" destination="5Xh-1I-GSB" id="0mr-he-IVK"/>
                         <outlet property="searchBar" destination="QJz-hx-Xne" id="b7P-Ve-Zba"/>
+                        <outlet property="segmentedControll" destination="2xM-j5-fV3" id="8FT-vC-wEA"/>
                         <segue destination="la6-Nt-XWs" kind="show" identifier="show" id="t4w-GX-Dg5"/>
                     </connections>
                 </viewController>
