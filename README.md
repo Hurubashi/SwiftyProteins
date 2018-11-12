@@ -20,6 +20,7 @@
   <img src="https://github.com/iosypenk/SwiftyProteins/blob/master/Screenshots/105.png" width="30%" />
 </div>
 
+
 My part of work:
 
 #### Protein View displays Protein model in 3D. Additional information about choosen atom is available. It is possible to share current screen view. 
