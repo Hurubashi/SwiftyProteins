@@ -1,11 +1,6 @@
 # SwiftyProteins
 ### SwiftyProteins is a visualizer for proteins models according to standardized representation from the famous PDB (Protein Data Bank) using SceneKit.
 
-## Requirements:
-<div style="display: flex; justify-content: space-around;">
-  <img src="https://github.com/iosypenk/SwiftyProteins/blob/master/Screenshots/subject.png" width="90%" />
-</div>
-
 #### Launch Screen and Login Screen, where you are able to log in, using biometric ID or Google Sign In.
 <div align="center">
   <img src="https://github.com/iosypenk/SwiftyProteins/blob/master/Screenshots/101.png" width="30%" />
